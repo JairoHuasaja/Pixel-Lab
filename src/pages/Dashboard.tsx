@@ -29,7 +29,7 @@ const Dashboard = () => {
 
   const fetchRoute = async () => {
     const resp = await fetch(
-      `/api/route?orig=${origin}&dest=${destination}&algo=${algo}`
+      `https://pixel-backend-y0h6.onrender.com/api/route?orig=${origin}&dest=${destination}&algo=${algo}`
     );
     const data: RouteResponse = await resp.json();
     if (data.coords) setRouteCoords(data.coords);
