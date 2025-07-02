@@ -14,10 +14,5 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  
-  build: {
-    rollupOptions: {
-      external: ["react-leaflet"],
-    },
-  },
+  // Elimina la sección build.rollupOptions.external
 }));
