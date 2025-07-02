@@ -131,15 +131,15 @@ const Dashboard = () => {
             {/* Algoritmo */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Algoritmo
+                Opciones
               </label>
               <select
                 value={algo}
                 onChange={(e) => setAlgo(e.target.value as any)}
                 className="w-full h-12 px-4 bg-gray-200 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agrorutas-green outline-none"
               >
-                <option value="dij">Dijkstra</option>
-                <option value="astar">A*</option>
+                <option value="dij">Ruta 1</option>
+                <option value="astar">Ruta 2</option>
               </select>
             </div>
 
@@ -150,14 +150,6 @@ const Dashboard = () => {
                 className="flex-1 h-12 bg-agrorutas-green text-white font-medium rounded-lg hover:bg-opacity-90 transition-colors shadow-lg"
               >
                 Calcular Ruta
-              </button>
-              <button
-                className="flex-1 h-12 bg-agrorutas-brown text-white font-medium rounded-lg hover:bg-opacity-90 transition-colors shadow-lg"
-                onClick={() => {
-                  
-                }}
-              >
-                Comparar
               </button>
             </div>
 
@@ -185,11 +177,11 @@ const Dashboard = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-agrorutas-red rounded-full" />
-                    <span>Punto de llegada</span>
+                    <span>Punto de Salida</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-agrorutas-blue rounded-full" />
-                    <span>Punto de Partida</span>
+                    <span>Punto de Llegada</span>
                   </div>
                 </div>
               </div>
