@@ -19,12 +19,11 @@ const Dashboard = () => {
   // Carga inicial de lista de nodos (puede venir de un endpoint /api/nodes)
   useEffect(() => {
     // Suponiendo un endpoint que devuelva IDs de nodos
-    fetch("/api/nodes")
-      .then(res => res.json())
-      .then((data: string[]) => setNodes(data))
-      .catch(() => {
-        // fallback dummy
-        setNodes([origin, destination]);
+    fetch("https://pixel-backend-y0h6.onrender.com/api/nodes")
+    .then(res => res.json())
+    .then((data: string[]) => setNodes(data))
+    .catch(() => {
+      setNodes([origin, destination]);
       });
   }, []);
 
