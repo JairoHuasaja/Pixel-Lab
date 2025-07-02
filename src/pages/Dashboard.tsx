@@ -10,6 +10,16 @@ interface RouteResponse {
   coords: [number, number][];
 }
 
+const redIcon = new L.Icon({
+  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+  iconRetinaUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+  shadowUrl: markerShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const [origin, setOrigin] = useState("292912800");
@@ -55,32 +65,26 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-agrorutas-bg font-['Inter']">
-      {/* Header */}
-      <header className="w-full h-16 bg-agrorutas-dark-green shadow-lg">
-        <div className="h-full flex items-center px-6">
-          {/* Logo + Título */}
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-agrorutas-green rounded-lg flex items-center justify-center">
-              {/* svg icon */}
-              <svg width="24" height="24" viewBox="0 0 24 24">
-                {/* … tus paths … */}
-              </svg>
-            </div>
-            <div>
-              <h1 className="text-white text-xl font-bold">AgroRutas Cajamarca</h1>
-              <p className="text-[#A8C5A0] text-sm">Optimización de Distribución Rural</p>
-            </div>
-          </div>
-          {/* Actions */}
-          <div className="ml-auto flex items-center gap-4">
-            {/* … otros iconos … */}
-            <button
-              onClick={handleLogout}
-              className="w-8 h-8 bg-agrorutas-green rounded-full flex items-center justify-center text-white text-sm font-medium"
-            >
-              JM
-            </button>
-          </div>
+      {/* HEADER */}
+      <header className="w-full h-16 bg-agrorutas-dark-green flex items-center px-6 shadow-md">
+        {/* Logo cuadrado */}
+        <div className="w-12 h-12 bg-agrorutas-green rounded flex items-center justify-center">
+          {/* Aquí tu SVG de logo */}
+          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M3.6 12.9H4.6V19.65C4.6 20.7 5.49 21.57 6.6 21.57H18.6C19.71 21.57 20.6 20.7 20.6 19.65V12.9H21.6C21.79 12.9 21.98 12.84 22.14 12.74C22.3 12.64 22.43 12.49 22.5 12.31C22.58 12.13 22.6 11.93 22.56 11.74C22.52 11.55 22.43 11.38 22.29 11.25L12.6 2.9L2.91 11.25C2.77 11.38 2.68 11.55 2.64 11.74C2.6 11.93 2.62 12.13 2.7 12.31C2.77 12.49 2.9 12.64 3.06 12.74C3.22 12.84 3.41 12.9 3.6 12.9Z" fill="black"/><path d="M12.6 7.17C10.95 7.17 9.6 8.47 9.6 10.05C9.6 11.63 10.95 12.93 12.6 12.93C14.25 12.93 15.6 11.63 15.6 10.05C15.6 8.47 14.25 7.17 12.6 7.17Z" fill="black"/></svg>
+        </div>
+        {/* Título + subtítulo */}
+        <div className="ml-4">
+          <h1 className="text-white text-2xl font-bold leading-tight">AgroRutas Cajamarca</h1>
+          <p className="text-[#A8C5A0] text-sm">Optimización de Distribución Rural</p>
+        </div>
+        {/* Avatar / Logout */}
+        <div className="ml-auto">
+          <button
+            onClick={handleLogout}
+            className="w-10 h-10 bg-agrorutas-green rounded-full flex items-center justify-center text-white text-base font-medium shadow"
+          >
+            JM
+          </button>
         </div>
       </header>
 
@@ -150,7 +154,7 @@ const Dashboard = () => {
               <button
                 className="flex-1 h-12 bg-agrorutas-brown text-white font-medium rounded-lg hover:bg-opacity-90 transition-colors shadow-lg"
                 onClick={() => {
-                  /* implementa comparar si quieres */
+                  
                 }}
               >
                 Comparar
@@ -177,15 +181,15 @@ const Dashboard = () => {
                 <div className="space-y-2 text-xs">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-agrorutas-green rounded-full" />
-                    <span>Puntos de distribución</span>
+                    <span>Camino Propuesto</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-agrorutas-red rounded-full" />
-                    <span>Puntos problemáticos</span>
+                    <span>Punto de llegada</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-agrorutas-blue rounded-full" />
-                    <span>Paradas intermedias</span>
+                    <span>Punto de Partida</span>
                   </div>
                 </div>
               </div>
@@ -204,7 +208,8 @@ const Dashboard = () => {
             {routeCoords.length > 0 && (
               <>
                 <Marker position={routeCoords[0]} />
-                <Marker position={routeCoords[routeCoords.length - 1]} />
+                <Marker position={routeCoords[routeCoords.length - 1]}
+                icon={redIcon} />
                 <Polyline positions={routeCoords} color="green" weight={5} />
               </>
             )}
