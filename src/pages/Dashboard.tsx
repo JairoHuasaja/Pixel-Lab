@@ -17,15 +17,18 @@ const Dashboard = () => {
   const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
 
   // Carga inicial de lista de nodos (puede venir de un endpoint /api/nodes)
-  useEffect(() => {
-    // Suponiendo un endpoint que devuelva IDs de nodos
-    fetch("https://pixel-backend-y0h6.onrender.com/api/nodes")
-    .then(res => res.json())
+ useEffect(() => {
+  fetch("https://pixel-backend-y0h6.onrender.com/api/nodes")
+    .then(res => {
+      if (!res.ok) throw new Error("No se pudo obtener nodos");
+      return res.json();
+    })
     .then((data: string[]) => setNodes(data))
-    .catch(() => {
+    .catch((e) => {
+      console.error("Error obteniendo nodos:", e);
       setNodes([origin, destination]);
-      });
-  }, []);
+    });
+}, []);
 
   const fetchRoute = async () => {
     const resp = await fetch(
@@ -36,11 +39,13 @@ const Dashboard = () => {
   };
 
   // Configurar iconos
+ useEffect(() => {
   L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
+    iconRetinaUrl: markerIcon2x,
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
   });
+}, []);
 
   return (
     <div className="flex h-screen">
