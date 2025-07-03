@@ -26,10 +26,46 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement actual signup logic
-    navigate("/dashboard");
+    // Validaciones básicas
+  if (formData.password !== formData.confirmPassword) {
+    alert("Las contraseñas no coinciden");
+    return;
+  }
+  if (formData.password.length < 8) {
+    alert("La contraseña debe tener al menos 8 caracteres");
+    return;
+  }
+  if (!acceptTerms || !acceptPrivacy) {
+    alert("Debes aceptar los términos y la política de privacidad");
+    return;
+  }
+
+  try {
+    const res = await fetch('https://pixel-database-8t8i.onrender.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+        // Si tu backend acepta más campos, agrégalos aquí:
+        // firstName: formData.firstName,
+        // lastName: formData.lastName,
+        // phone: formData.phone,
+        // userType: formData.userType,
+      }),
+    });
+    if (res.ok) {
+      alert("Usuario creado correctamente. Ahora puedes iniciar sesión.");
+      navigate("/login");
+    } else {
+      const data = await res.json();
+      alert(data.error || "No se pudo crear el usuario");
+    }
+  } catch (err) {
+    alert("Error de conexión con el servidor");
+  }
   };
 
   return (
