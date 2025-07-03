@@ -8,10 +8,23 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement actual login logic
-    navigate("/dashboard");
+    try {
+      const res = await fetch('https://pixel-database-8t8i.onrender.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      if (res.ok) {
+        navigate("/dashboard");
+      } else {
+        const data = await res.json();
+        alert(data.error || "Correo o contraseña incorrectos");
+      }
+    } catch (err) {
+      alert("Error de conexión con el servidor");
+    }
   };
 
   return (
