@@ -4200,11 +4200,11 @@ const Dashboard = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-agrorutas-red rounded-full" />
-                    <span>Punto de Salida</span>
+                    <span>Punto de Llegada</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-agrorutas-blue rounded-full" />
-                    <span>Punto de Llegada</span>
+                    <span>Punto de Salida</span>
                   </div>
                 </div>
               </div>
