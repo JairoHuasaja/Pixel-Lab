@@ -11,7 +11,7 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('https://pixel-database-8t8i.onrender.com', {
+      const res = await fetch('https://pixel-database-8t8i.onrender.com/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

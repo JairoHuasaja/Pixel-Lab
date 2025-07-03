@@ -43,17 +43,12 @@ const Signup = () => {
   }
 
   try {
-    const res = await fetch('https://pixel-database-8t8i.onrender.com', {
+    const res = await fetch('https://pixel-database-8t8i.onrender.com/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: formData.email,
         password: formData.password,
-        // Si tu backend acepta más campos, agrégalos aquí:
-        // firstName: formData.firstName,
-        // lastName: formData.lastName,
-        // phone: formData.phone,
-        // userType: formData.userType,
       }),
     });
     if (res.ok) {
