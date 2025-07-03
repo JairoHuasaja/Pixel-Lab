@@ -126,9 +126,6 @@ const Landing = () => {
               >
                 Comenzar Ahora
               </button>
-              <button className="px-8 py-4 bg-agrorutas-brown text-white text-lg font-semibold rounded-lg hover:bg-opacity-90 transition-colors shadow-lg">
-                Ver Demo
-              </button>
             </div>
 
             {/* Stats */}
@@ -198,31 +195,6 @@ const Landing = () => {
                 <span className="text-sm font-medium text-gray-700">
                   Cajamarca, Perú
                 </span>
-              </div>
-            </div>
-
-            {/* Info Card */}
-            <div className="absolute -top-4 -right-4 bg-white p-4 rounded-lg shadow-xl max-w-44">
-              <h3 className="text-sm font-semibold text-agrorutas-dark-green mb-3">
-                Información de Zona
-              </h3>
-              <div className="space-y-2 text-xs">
-                <div>
-                  <span className="text-gray-500">Región:</span>{" "}
-                  <span className="text-gray-700">Cajamarca</span>
-                </div>
-                <div>
-                  <span className="text-gray-500">Altitud:</span>{" "}
-                  <span className="text-gray-700">2,750 msnm</span>
-                </div>
-                <div>
-                  <span className="text-gray-500">Clima:</span>{" "}
-                  <span className="text-gray-700">Templado</span>
-                </div>
-                <div>
-                  <span className="text-gray-500">Temporada:</span>{" "}
-                  <span className="text-gray-700">Seca</span>
-                </div>
               </div>
             </div>
           </div>
@@ -346,7 +318,7 @@ const Landing = () => {
 
               <div className="h-32 bg-agrorutas-light-green rounded-lg flex items-center justify-center">
                 <span className="text-agrorutas-green text-sm font-medium">
-                  Vista Previa de Funcionalidad
+                  Funcionalidad
                 </span>
               </div>
             </div>
