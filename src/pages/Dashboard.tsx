@@ -10,6 +10,8 @@ interface RouteResponse {
   coords: [number, number][];
 }
 
+type AlgoType = "dij" | "astar" | "nn" | "cluster";
+
 const redIcon = new L.Icon({
   iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
   iconRetinaUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
@@ -24,7 +26,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [origin, setOrigin] = useState("292912800");
   const [destination, setDestination] = useState("352892744");
-  const [algo, setAlgo] = useState<"dij" | "astar">("dij");
+  const [algo, setAlgo] = useState<AlgoType>("dij");
   const [nodes, setNodes] = useState<string[]>([]);
   const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
   const [showLegend, setShowLegend] = useState(false);
@@ -46,12 +48,38 @@ const Dashboard = () => {
     });
 }, []);
 
+  // Verificar conectividad
+  const checkConnectivity = async (): Promise<boolean> => {
+    try {
+      const resp = await fetch(
+        `https://pixel-backend-y0h6.onrender.com/api/connectivity?orig=${origin}&dest=${destination}`
+      );
+      const data = await resp.json();
+      if (!data.connected) {
+        alert("Origen y destino no están conectados");
+        return false;
+      }
+      return true;
+    } catch {
+      return true;
+    }
+  };
+
   const fetchRoute = async () => {
-    const resp = await fetch(
-      `https://pixel-backend-y0h6.onrender.com/api/route?orig=${origin}&dest=${destination}&algo=${algo}`
-    );
-    const data: RouteResponse = await resp.json();
-    if (data.coords) setRouteCoords(data.coords);
+    try {
+      const resp = await fetch(
+        `https://pixel-backend-y0h6.onrender.com/api/route?orig=${origin}&dest=${destination}&algo=${algo}`
+      );
+      const data: RouteResponse = await resp.json();
+      if (resp.ok && data.coords) {
+        setRouteCoords(data.coords);
+      } else {
+        alert(`Error: ${(data as any).error || "Ruta no disponible"}`);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error de conexión con el servidor");
+    }
   };
 
   const nodeNames: Record<string, string> = {
@@ -4076,6 +4104,11 @@ const Dashboard = () => {
   "12141093051": "Cajamarca",
   "12621953030": "Urbanización Cajamarca"
 };
+  const handleCalculate = async () => {
+    const ok = await checkConnectivity();
+    if (ok) fetchRoute();
+  };
+
 
   // Configurar iconos
  useEffect(() => {
@@ -4163,6 +4196,8 @@ const Dashboard = () => {
               >
                 <option value="dij">Ruta 1</option>
                 <option value="astar">Ruta 2</option>
+                <option value="nn">Ruta 3 (Vecino Más Cercano)</option>
+                <option value="cluster">Ruta 4 (Clustering)</option>
               </select>
             </div>
 
