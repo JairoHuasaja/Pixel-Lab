@@ -117,12 +117,12 @@ graph TD
 1. 🍴 Haz un fork del repositorio
 2. 🌿 Crea una rama 
 ```bash 
-(git checkout -b feature/nueva-funcionalidad) 
+git checkout -b feature/nueva-funcionalidad 
 ```
 3. 💻 Realiza tus cambios y commits
 4. 🔀 Haz push a tu rama 
 ``` bash 
-(git push origin feature/nueva-funcionalidad) 
+git push origin feature/nueva-funcionalidad 
 ```
 5. 📦 Abre un Pull Request
 
