@@ -4194,8 +4194,8 @@ const Dashboard = () => {
                 onChange={(e) => setAlgo(e.target.value as any)}
                 className="w-full h-12 px-4 bg-gray-200 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agrorutas-green outline-none"
               >
-                <option value="dij">Ruta 1</option>
-                <option value="astar">Ruta 2</option>
+                <option value="dij">Ruta 1(Dijkstra)</option>
+                <option value="astar">Ruta 2(A*)</option>
                 <option value="nn">Ruta 3 (Vecino Más Cercano)</option>
                 <option value="cluster">Ruta 4 (Clustering)</option>
               </select>
