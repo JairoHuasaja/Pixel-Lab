@@ -1,12 +1,11 @@
 <h1 align="center">🚀 Pixel-Lab | Optimización de Distribución Rural en Cajamarca</h1>
 
-<div align="center">
 [![React](https://img.shields.io/badge/React-18+-61DAFB?logo=react&logoColor=white)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.0+-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.0+-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/Licencia-MIT-green.svg)](https://opensource.org/licenses/MIT)
-</div>
+
 
 <p align="center">
 <strong>Pixel-Lab</strong> es una solución tecnológica innovadora diseñada para optimizar la distribución rural en Cajamarca, Perú. Combina un frontend moderno desarrollado con React y TypeScript con un backend potente en Python (Flask) para ofrecer soluciones inteligentes de ruteo y gestión logística.
